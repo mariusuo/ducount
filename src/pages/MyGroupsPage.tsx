@@ -70,7 +70,7 @@ export default function MyGroupsPage() {
                 {groups.length} {groups.length === 1 ? 'group' : 'groups'}
               </p>
             </div>
-            <Link to="/" className="btn-primary">
+            <Link to="/new" className="btn-primary">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
@@ -104,7 +104,7 @@ export default function MyGroupsPage() {
             <p className="text-gray-500 mb-6">
               Create your first group to start splitting expenses with friends
             </p>
-            <Link to="/" className="btn-primary">
+            <Link to="/new" className="btn-primary">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>

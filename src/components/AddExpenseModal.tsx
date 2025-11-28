@@ -251,9 +251,9 @@ export default function AddExpenseModal({ groupId, members, currency, onClose, e
               </div>
             </div>
 
-            {/* Date & Paid By Row */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
+            {/* Date & Paid By Row - stacked on mobile, side-by-side on larger screens */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex-1">
                 <label className="label">Date</label>
                 <input
                   type="date"
@@ -262,7 +262,7 @@ export default function AddExpenseModal({ groupId, members, currency, onClose, e
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>
-              <div>
+              <div className="flex-1">
                 <label className="label">Paid by</label>
                 <select
                   className="input"
