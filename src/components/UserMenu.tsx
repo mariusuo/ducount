@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate, Link } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -9,6 +10,19 @@ export default function UserMenu() {
   const { user, signInWithGoogle, signOut, loading } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const [signingIn, setSigningIn] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, right: 0 });
+
+  // Update dropdown position when it opens
+  useEffect(() => {
+    if (showDropdown && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + 8, // 8px gap (mt-2)
+        right: window.innerWidth - rect.right,
+      });
+    }
+  }, [showDropdown]);
 
   const handleSignIn = async () => {
     setSigningIn(true);
@@ -99,8 +113,9 @@ export default function UserMenu() {
   }
 
   return (
-    <div className="relative">
+    <>
       <button
+        ref={buttonRef}
         onClick={() => setShowDropdown(!showDropdown)}
         className="flex items-center gap-2"
       >
@@ -117,16 +132,19 @@ export default function UserMenu() {
         )}
       </button>
 
-      {showDropdown && (
+      {showDropdown && createPortal(
         <>
-          {/* Backdrop */}
+          {/* Backdrop - rendered via portal to escape header's stacking context */}
           <div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[100]"
             onClick={() => setShowDropdown(false)}
           />
           
-          {/* Dropdown */}
-          <div className="absolute right-0 top-full mt-2 w-64 bg-dark-800 border border-gray-700 rounded-xl shadow-xl z-50 overflow-hidden">
+          {/* Dropdown - positioned based on button location */}
+          <div 
+            className="fixed w-64 bg-dark-800 border border-gray-700 rounded-xl shadow-xl z-[110] overflow-hidden"
+            style={{ top: dropdownPosition.top, right: dropdownPosition.right }}
+          >
             <div className="px-4 py-3 border-b border-gray-700">
               <p className="text-sm font-medium text-white truncate">
                 {user.displayName || 'User'}
@@ -157,8 +175,9 @@ export default function UserMenu() {
               </button>
             </div>
           </div>
-        </>
+        </>,
+        document.body
       )}
-    </div>
+    </>
   );
 }

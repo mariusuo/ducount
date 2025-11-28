@@ -16,7 +16,6 @@ A simple, free expense splitting app - like Splitwise/Tricount but simpler. No s
 - **Share Modal** - Easy link sharing when creating groups
 - **Mobile-First** - Responsive design for phone and desktop
 - **Real-time Sync** - Changes sync instantly via Firestore
-- **Admin Panel** - Secret admin access to manage all groups
 
 ## 🚀 Quick Start
 
@@ -72,29 +71,6 @@ npm run dev
 
 Visit `http://localhost:5173` to see the app.
 
-## 📦 Deploy to GitHub Pages
-
-### Option A: Automatic Deployment (Recommended)
-
-1. Push your code to GitHub
-2. Go to Repository Settings > Secrets and variables > Actions
-3. Add the following repository secrets:
-   - `VITE_FIREBASE_API_KEY`
-   - `VITE_FIREBASE_AUTH_DOMAIN`
-   - `VITE_FIREBASE_PROJECT_ID`
-   - `VITE_FIREBASE_STORAGE_BUCKET`
-   - `VITE_FIREBASE_MESSAGING_SENDER_ID`
-   - `VITE_FIREBASE_APP_ID`
-4. Go to Settings > Pages > Source: **GitHub Actions**
-5. Push to `main` branch to trigger deployment
-
-### Option B: Manual Deployment
-
-```bash
-npm run build
-# Upload the 'dist' folder to your hosting
-```
-
 ## 🔒 Firestore Security Rules
 
 For production, add these security rules in Firebase Console > Firestore > Rules:
@@ -135,26 +111,8 @@ service cloud.firestore {
 ## 📱 Firestore Free Tier Limits
 
 The app is designed to work within Firestore's free tier:
-- 1 GB storage
-- 50,000 reads/day
-- 20,000 writes/day
-- 20,000 deletes/day
-
 This is plenty for personal use and small groups!
 
-## 🎯 Features Comparison
-
-| Feature | Splitwise | Tricount | DuCount |
-|---------|-----------|----------|---------|
-| No sign-up | ❌ | ❌ | ✅ |
-| Free | Freemium | Freemium | ✅ |
-| Share via link | ❌ | ❌ | ✅ |
-| Equal splits | ✅ | ✅ | ✅ |
-| Custom splits | ✅ | ✅ | ✅ |
-| Debt simplification | ✅ | ✅ | ✅ |
-| Multi-currency | ✅ | ✅ | ❌ |
-| Receipt scanning | ✅ | ❌ | ❌ |
-| Recurring expenses | ✅ | ❌ | ❌ |
 
 ## 📋 Changelog
 
@@ -216,8 +174,3 @@ This is plenty for personal use and small groups!
 ## 📄 License
 
 MIT License - feel free to use this project for anything!
-
-## 🤝 Contributing
-
-Contributions welcome! Feel free to open issues or submit PRs.
-

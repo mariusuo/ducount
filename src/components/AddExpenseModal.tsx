@@ -253,7 +253,7 @@ export default function AddExpenseModal({ groupId, members, currency, onClose, e
 
             {/* Date & Paid By Row - stacked on mobile, side-by-side on larger screens */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex-1">
+              <div className="sm:w-[160px] sm:flex-shrink-0">
                 <label className="label">Date</label>
                 <input
                   type="date"
