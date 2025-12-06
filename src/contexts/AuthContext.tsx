@@ -68,10 +68,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     signOut,
   };
 
+  // React 19: Context can be rendered directly as a provider
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext value={value}>
       {children}
-    </AuthContext.Provider>
+    </AuthContext>
   );
 }
 
