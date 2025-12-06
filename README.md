@@ -101,7 +101,7 @@ service cloud.firestore {
 
 ## 🛠️ Tech Stack
 
-- **React 18** - UI Framework
+- **React 19** - UI Framework
 - **TypeScript** - Type Safety
 - **Vite** - Build Tool
 - **Tailwind CSS** - Styling
@@ -116,7 +116,14 @@ This is plenty for personal use and small groups!
 
 ## 📋 Changelog
 
-### v1.11 (Current)
+### v1.12 (Current)
+- **React 19 Upgrade** - Updated to React 19.2.1 with new features (use(), useFormStatus, etc.)
+- **Smart Home Redirect** - Signed-in users go to My Groups, guests see group creation
+- **New `/new` Route** - Dedicated route for creating new groups
+- **Mobile UI Fixes** - Date/Paid By fields stack on mobile, constrained date picker width
+- **User Menu Fix** - Dropdown now closes when tapping outside (React Portal)
+
+### v1.11
 - **Claim Profile Banner** - Visible button for signed-in users to claim their profile anytime
 - **Auth-aware Session** - Sign in after skipping now re-triggers claim prompt
 - **Smart Modal Start** - Already signed-in users skip welcome step, go straight to member selection
