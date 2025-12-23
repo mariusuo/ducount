@@ -73,31 +73,28 @@ Visit `http://localhost:5173` to see the app.
 
 ## 🔒 Firestore Security Rules
 
-For production, add these security rules in Firebase Console > Firestore > Rules:
+**Important:** Deploy the security rules to production to keep your app secure and working properly.
 
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Allow read/write access to all groups
-    match /groups/{groupId} {
-      allow read, write: if true;
-    }
-    
-    // Allow read/write access to expenses
-    match /expenses/{expenseId} {
-      allow read, write: if true;
-    }
-    
-    // Allow read/write access to settlements
-    match /settlements/{settlementId} {
-      allow read, write: if true;
-    }
-  }
-}
+The project includes a `firestore.rules` file with proper security rules. Deploy them using one of these methods:
+
+### Option 1: Firebase Console (Easiest)
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Select your project
+3. Navigate to **Firestore Database** → **Rules** tab
+4. Copy the contents of `firestore.rules` and paste them into the editor
+5. Click **Publish**
+
+### Option 2: Firebase CLI
+```bash
+firebase login
+firebase deploy --only firestore:rules
 ```
 
-**Note:** These rules allow anyone with the link to access the group. For better security, consider implementing authentication.
+### Security Model
+- **Groups**: Anyone can read/create groups (for guest access), but only authenticated users who are members can update/delete
+- **Expenses & Settlements**: Anyone with the group link can manage (supports guest users)
+
+**Note:** Guest users can create and use groups without authentication. Sign-in is optional for managing multiple groups.
 
 ## 🛠️ Tech Stack
 
